@@ -5,13 +5,13 @@ import os
 import zipfile
 
 """Downloads Citibike trip data as zip files then unzips them.
-Downloads NY trip data for October 2019 to October 2020
+Downloads NY trip data for January 2020 to present time
 """
 
 def retrieve_citibike_data():
 
     """Retrieves trip data from Citibike's S3 buckets as zip files.
-    Downloads trip data from October 2010 to October 2020
+    Downloads trip data from January 2020 to October 2020
     Returns:
         Nothing
     """
