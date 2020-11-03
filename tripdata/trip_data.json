@@ -1,0 +1,38 @@
+{
+    "202001": {
+        "url": "https://s3.amazonaws.com/tripdata/202001-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202001.csv.zip"
+    },
+    "202002": {
+        "url": "https://s3.amazonaws.com/tripdata/202002-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202002.csv.zip"
+    },
+    "202003": {
+        "url": "https://s3.amazonaws.com/tripdata/202003-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202003.csv.zip"
+    },
+    "202004": {
+        "url": "https://s3.amazonaws.com/tripdata/202004-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202004.csv.zip"
+    },
+    "202005": {
+        "url": "https://s3.amazonaws.com/tripdata/202005-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202005.csv.zip"
+    },
+    "202006": {
+        "url": "https://s3.amazonaws.com/tripdata/202006-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202006.csv.zip"
+    },
+    "202007": {
+        "url": "https://s3.amazonaws.com/tripdata/202007-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202007.csv.zip"
+    },
+    "202008": {
+        "url": "https://s3.amazonaws.com/tripdata/202008-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202008.csv.zip"
+    },
+    "202009": {
+        "url": "https://s3.amazonaws.com/tripdata/202009-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202009.csv.zip"
+    }
+}
