@@ -34,5 +34,9 @@
     "202009": {
         "url": "https://s3.amazonaws.com/tripdata/202009-citibike-tripdata.csv.zip",
         "file_path": "./tripdata/zip/citibike_tripdata_202009.csv.zip"
+    },
+    "202010": {
+        "url": "https://s3.amazonaws.com/tripdata/202010-citibike-tripdata.csv.zip",
+        "file_path": "./tripdata/zip/citibike_tripdata_202010.csv.zip"
     }
 }
