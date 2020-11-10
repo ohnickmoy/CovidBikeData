@@ -10,6 +10,18 @@ import calendar
 """Downloads Citibike trip data as zip files then unzips them.
 Downloads NY trip data for January 2020 to previous published month
 """
+def get_previous_month_with_year():
+    """Checks for current month and returns the last month, 
+    since Citibike publishes data of a given month a month later
+    ex. Data for January is published February
+    Returns:
+        The Previous month
+    """
+    now = datetime.datetime.now()
+    past_month = now.month - 1 if now.month != 1 else 12
+    year = now.year if past_month != 12 else now.year - 1 
+
+    return (past_month, year)
 
 def retrieve_citibike_data():
 
@@ -32,16 +44,14 @@ def retrieve_citibike_data():
     # since data lags a month ie in October, expect a September data dump
     # make special case when current month is January 
 
-    now = datetime.datetime.now()
-    past_month = now.month - 1 if now.month != 1 else 12
-    year = now.year if past_month != 12 else now.year - 1 
+    past_month_with_year = get_previous_month_with_year()
     
     for month in range(1, 13):
 
-        if month > past_month:
+        if month > past_month_with_year[0]:
             break
 
-        date_format = str(year) + '{:02d}'.format(month)
+        date_format = str(past_month_with_year[1]) + '{:02d}'.format(month)
     
         if date_format not in trip_data:
             url = 'https://s3.amazonaws.com/tripdata/' + date_format + '-citibike-tripdata.csv.zip'
@@ -50,7 +60,7 @@ def retrieve_citibike_data():
             r = requests.get(url)
 
             if r.status_code == 404:
-                print(f'404 status was issued. Data for {calendar.month_name[past_month]} not ready yet')
+                print(f'404 status was issued. Data for {calendar.month_name[past_month_with_year[0]]} not ready yet')
                 break
 
             file_path = target + date_format + ".csv.zip"
@@ -63,7 +73,7 @@ def retrieve_citibike_data():
             with open(file_path, 'wb') as f:
                     f.write(r.content)
 
-            print(str(year) + "-" + str(month) + " done")
+            print(str(past_month_with_year[1]) + "-" + str(month) + " done")
 
     print("Overwriting %s" % json_file_path)
     with open(json_file_path, "wt") as fp:
@@ -93,6 +103,8 @@ def unzip_citibike_data():
                 print(item + " done")
                 os.remove(file_name)
 
+def shoutOut():
+    return 'HEY YOU!'
 
 if __name__ == "__main__":
     retrieve_citibike_data()
