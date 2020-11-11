@@ -1,17 +1,16 @@
-import gzip
-import shutil
-import requests
+"""Downloads Citibike trip data as zip files then unzips them.
+Downloads NY trip data for January 2020 to previous published month
+"""
+
 import os
 import zipfile
 import json
 import datetime
 import calendar
+import requests
 
-"""Downloads Citibike trip data as zip files then unzips them.
-Downloads NY trip data for January 2020 to previous published month
-"""
 def get_previous_month_with_year():
-    """Checks for current month and returns the last month, 
+    """Checks for current month and returns the last month,
     since Citibike publishes data of a given month a month later
     ex. Data for January is published February
     Returns:
@@ -20,12 +19,12 @@ def get_previous_month_with_year():
 
     now = datetime.datetime.now()
     past_month = now.month - 1 if now.month != 1 else 12
-    year = now.year if past_month != 12 else now.year - 1 
+    year = now.year if past_month != 12 else now.year - 1
 
     return (past_month, year)
 
 def get_trip_data(json_file_path):
-    """Takes in a file path (expected to be json) that contains 
+    """Takes in a file path (expected to be json) that contains
     information that corresponds to each monthlike URLs to files and file paths
 
     Args:
@@ -37,10 +36,9 @@ def get_trip_data(json_file_path):
     try:
         with open(json_file_path) as json_file:
             trip_data = json.load(json_file)
-    except IOError as IOerror:
+    except IOError:
         print('Could not read file')
-        print(IOerror)
-    
+
     return trip_data
 
 def retrieve_citibike_data():
@@ -55,28 +53,28 @@ def retrieve_citibike_data():
     trip_data = get_trip_data(json_file_path)
 
     target = './tripdata/zip/citibike_tripdata_'
-    
+
     # get current date to attempt get last months data
     # since data lags a month ie in October, expect a September data dump
-    # make special case when current month is January 
+    # make special case when current month is January
 
     past_month_with_year = get_previous_month_with_year()
-    
+
     for month in range(1, 13):
 
         if month > past_month_with_year[0]:
             break
 
         date_format = str(past_month_with_year[1]) + '{:02d}'.format(month)
-    
         if date_format not in trip_data:
             url = 'https://s3.amazonaws.com/tripdata/' + date_format + '-citibike-tripdata.csv.zip'
-            
-            # make request first. If 404, break loop, otherwise, continue with data download
-            r = requests.get(url)
 
-            if r.status_code == 404:
-                print(f'404 status was issued. Data for {calendar.month_name[past_month_with_year[0]]} not ready yet')
+            # make request first. If 404, break loop, otherwise, continue with data download
+            response = requests.get(url)
+
+            if response.status_code == 404:
+                print('404 status was issued.')
+                print(f'Data for {calendar.month_name[past_month_with_year[0]]} not ready yet')
                 break
 
             file_path = target + date_format + ".csv.zip"
@@ -86,14 +84,14 @@ def retrieve_citibike_data():
             }
             trip_data[date_format] = past_month_trip_json
 
-            with open(file_path, 'wb') as f:
-                    f.write(r.content)
+            with open(file_path, 'wb') as opened_file:
+                opened_file.write(response.content)
 
             print(str(past_month_with_year[1]) + "-" + str(month) + " done")
 
     print("Overwriting %s" % json_file_path)
-    with open(json_file_path, "wt") as fp:
-        json.dump(trip_data, fp, indent=4)
+    with open(json_file_path, "wt") as overwritten_file:
+        json.dump(trip_data, overwritten_file, indent=4)
 
 
 def unzip_citibike_data(zip_dir, csv_dir):
