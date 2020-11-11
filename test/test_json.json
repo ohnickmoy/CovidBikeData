@@ -1,0 +1,14 @@
+{
+    "202001": {
+        "url": "test-url1",
+        "file_path": "./test/testfiles/test_txt1.txt"
+    },
+    "202002": {
+        "url": "test-url2",
+        "file_path": "./test/testfiles/test_txt2.txt"
+    },
+    "202003": {
+        "url": "test-url3",
+        "file_path": "./test/testfiles/test_txt3.txt"
+    }
+}

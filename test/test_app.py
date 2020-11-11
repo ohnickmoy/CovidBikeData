@@ -1,6 +1,7 @@
 import unittest
 import code
 import datetime
+import os
 from unittest import mock
 from code import app
 
@@ -39,6 +40,31 @@ class TestApp(unittest.TestCase):
 
         self.assertEqual(test_date[0], 12)
         self.assertEqual(test_date[1], 2020)
+    
+    def test_get_trip_data(self):
+        """Test for get_trip_data, which opens JSON file 
+        """
+        test_path = "./test/test_json.json"
+        test_results = app.get_trip_data(test_path)
+
+        self.assertEqual(len(test_results),3)
+    
+    def test_unzip_data(self):
+        """Test for unziping method. 
+        Checks to see if unzipping is successful in given file path
+        """
+        
+        zip_dir = "./test/testfiles/zip/"
+        fake_csv_dir = "./test/testfiles/text/"
+
+        patcher = mock.patch('os.remove')
+        patcher.start()
+
+        app.unzip_citibike_data(zip_dir, fake_csv_dir)
+        self.assertEqual(len(os.listdir(fake_csv_dir)), 4)
+        
+        patcher.stop()
+        os.remove(f'{fake_csv_dir}test_txt4.txt')
 
 
 if __name__ == "__main__":

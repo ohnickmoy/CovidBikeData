@@ -15,13 +15,33 @@ def get_previous_month_with_year():
     since Citibike publishes data of a given month a month later
     ex. Data for January is published February
     Returns:
-        The Previous month
+        tuple: Tuple of previous month and its associated year
     """
+
     now = datetime.datetime.now()
     past_month = now.month - 1 if now.month != 1 else 12
     year = now.year if past_month != 12 else now.year - 1 
 
     return (past_month, year)
+
+def get_trip_data(json_file_path):
+    """Takes in a file path (expected to be json) that contains 
+    information that corresponds to each monthlike URLs to files and file paths
+
+    Args:
+        json_file_path (string): string of filepath
+
+    Returns:
+        dict: dictionary of loaded data from JSON
+    """
+    try:
+        with open(json_file_path) as json_file:
+            trip_data = json.load(json_file)
+    except IOError as IOerror:
+        print('Could not read file')
+        print(IOerror)
+    
+    return trip_data
 
 def retrieve_citibike_data():
 
@@ -32,11 +52,7 @@ def retrieve_citibike_data():
     """
     # open JSON_file
     json_file_path = './tripdata/trip_data.json'
-    try:
-        with open(json_file_path) as json_file:
-            trip_data = json.load(json_file)
-    except IOError:
-        print('Could not read file')
+    trip_data = get_trip_data(json_file_path)
 
     target = './tripdata/zip/citibike_tripdata_'
     
@@ -80,15 +96,13 @@ def retrieve_citibike_data():
         json.dump(trip_data, fp, indent=4)
 
 
-def unzip_citibike_data():
+def unzip_citibike_data(zip_dir, csv_dir):
 
     """Unzips Citibike zip files for NY.
     Returns:
         Nothing
     """
 
-    zip_dir = "./tripdata/zip/"
-    csv_dir = "./tripdata/csv/"
     extension = ".zip"
 
     # for each zip file in zip_dir extract data to csv_dir
@@ -103,9 +117,6 @@ def unzip_citibike_data():
                 print(item + " done")
                 os.remove(file_name)
 
-def shoutOut():
-    return 'HEY YOU!'
-
 if __name__ == "__main__":
     retrieve_citibike_data()
-    unzip_citibike_data()
+    unzip_citibike_data("./tripdata/zip/", "./tripdata/csv/")
