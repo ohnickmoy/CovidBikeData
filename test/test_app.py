@@ -4,7 +4,7 @@ import unittest
 import datetime
 import os
 from unittest import mock
-from code import app
+from scraper import app
 
 class TestApp(unittest.TestCase):
     """Class for testing suit for app.py
