@@ -1,2 +1,5 @@
 client_secrets.json
 .vscode
+venv
+.pytest_cache
+__pycache__
