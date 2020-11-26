@@ -1,6 +1,7 @@
 """Takes in data downloaded from scraper/app.py and does some ploting of data
 """
 import os
+import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -31,20 +32,27 @@ import matplotlib.pyplot as plt
 TRIP_DIR = "./tripdata/csv/"
 trip_csvs = os.listdir(TRIP_DIR)
 trip_csvs.sort()
+
 year_months = []
 total_trips_per_month = []
+
+#traverse through the files in the trip_csv dir
 for file_name in trip_csvs:
     file_list = file_name.split("-")
     year_month = file_list[0]
     print(f"Checking {year_month}")
-
-    year_months.append(year_month)
+    datetime_obj = datetime.datetime.strptime(year_month[4:], "%m")
+    month_name = datetime_obj.strftime("%b")
+    year_months.append(f"{month_name} {year_month[:4]}")
 
     curr_file_path = TRIP_DIR + file_name
     df = pd.read_csv(curr_file_path)
     total_trips_per_month.append(len(df.index))
 
-graph = plt.figure(figsize=(10, 6))
+graph = plt.figure(figsize=(11, 6))
 plt.plot(year_months, total_trips_per_month)
+plt.title(f"Citibike Ridership - {year_months[0]} to {year_months[len(year_months) - 1]}")
+plt.xlabel("Month and Year")
+plt.ylabel("Ridership in Millions")
 
-plt.show()
+plt.savefig('./plotdata/images/covid_ridership.png')
