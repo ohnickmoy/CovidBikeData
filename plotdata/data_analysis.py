@@ -53,12 +53,13 @@ def generate_total_ridership_data(csv_paths_list, csv_dir):
 
     return total_ridership_data
 
-def generate_total_ridership_chart(total_ridership_data):
+def generate_total_ridership_chart(total_ridership_data, image_file_path):
     """Generates chart for total Citibike ridership during period of Covid-19
 
     Args:
         total_ridership_data (dictionary): dictionary containing corresponding ridership
         to given month and year
+        cimage_file_path (string): string of image file name and path to be generated
     """
     year_months = total_ridership_data['year_months']
     total_trips_per_month = total_ridership_data['total_trips_per_month']
@@ -68,10 +69,11 @@ def generate_total_ridership_chart(total_ridership_data):
     plt.xlabel("Month and Year")
     plt.ylabel("Ridership in Millions")
 
-    plt.savefig('./plotdata/images/covid_ridership.png')
+    plt.savefig(image_file_path)
 
 if __name__ == '__main__':
     CSV_PATH = './tripdata/csv/'
     trip_csv_paths = get_csv_file_paths(CSV_PATH)
     all_ridership_data = generate_total_ridership_data(trip_csv_paths, CSV_PATH)
-    generate_total_ridership_chart(all_ridership_data)
+    RIDERSHIP_FILENAME_AND_PATH = './plotdata/images/covid_ridership.png'
+    generate_total_ridership_chart(all_ridership_data, RIDERSHIP_FILENAME_AND_PATH)

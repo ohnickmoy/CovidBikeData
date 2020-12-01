@@ -24,6 +24,7 @@ jobs:
     - name: Lint with pylint
       run: |
         pylint scraper
+        pylint plotdata
         pylint test
     - name: Test with pytest
       run: |
