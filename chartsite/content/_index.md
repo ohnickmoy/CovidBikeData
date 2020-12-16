@@ -1,21 +1,17 @@
-# A match made in heaven
+# Hello there!
 
-There is a website obesity crisis. Bloated websites full of scripts, ads, and trackers are slowing your readers down every time they try to read your well-crafted content.
+This is a small project that sets out to do some data analysis of bike share data during the Covid-19 period, but also is a means of learning some new technologies as I grow as a software developer. 
 
-Hugo Bear Blog is all you need to build a fantastic and optimized site or blog. It works perfectly on **any** viewing device. All you need to focus on is writing good content.
+## Project Aims
 
-[Go to the original bear blog](https://bearblog.dev/).
+What this project sets out to do is take public bike share data, do some data analysis of them through Python scripts, and then put some visualizations on this site. The project also hopes to automate most of process, from the pulling, to the analysis, to finally, updating the site. 
 
----
+So far, the project is taking data from [this s3 bucket](https://s3.amazonaws.com/tripdata/index.html) provided by Citibike in New York City. 
 
-What happens when you combine the worlds' fastest, most lightweight static site generator with a design theme built to provide you with free, no-nonsense, super-fast blogging capabilities?
+After New York is done, I'll probably set out to do similar analysis for other cities, like Boston or San Francisco. Each city will get their own page, which you can see on the menu above. 
 
-**Use this theme, and find out!**
+To take a look at the code for this project, you can access [this repo](https://github.com/ohnickmoy)
 
-Made with 💟 by [Jan Raasch](https://www.janraasch.com).
+## Collaboration 
 
----
-
-Simply publish content online, grow an audience, and keep your pages tiny, fast, and **optimized for search engines**.
-
-Each page is ~5kb, and you can **host your blog yourself**.
+If you want to help out on this project, just send a message to [covidbikedata@gmail.com](mailto:covidbikedata@gmail.com)!
