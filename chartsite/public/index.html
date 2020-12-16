@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta name="generator" content="Hugo 0.78.2" />
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://example.com/images/favicon.png" />
+<title>Covid Bike Data ʕ•ᴥ•ʔ A Data Analysis Project</title>
+<meta name="title" content="Covid Bike Data ʕ•ᴥ•ʔ A Data Analysis Project" />
+<meta name="description" content="A project about Bike share data. Made with hugo bear theme" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="A project about Bike share data. Made with hugo bear theme" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://example.com/" />
+<meta property="og:image" content="https://example.com/images/share.png"/>
+<meta property="og:site_name" content="Covid Bike Data" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/images/share.png"/>
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="A project about Bike share data. Made with hugo bear theme"/>
+
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="A project about Bike share data. Made with hugo bear theme">
+
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <link rel="alternate" type="application/rss+xml" href="https://example.com/index.xml" title="Covid Bike Data ʕ•ᴥ•ʔ A Data Analysis Project" />
+  <style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+  'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Covid Bike Data ʕ•ᴥ•ʔ A Data Analysis Project</h2>
+</a>
+<nav><a href="/">Home</a>
+
+
+</nav>
+</header>
+  <main>
+<h1 id="hello-there">Hello there!</h1>
+<p>This is a small project that sets out to do some data analysis of bike share data during the Covid-19 period, but also is a means of learning some new technologies as I grow as a software developer.</p>
+<h2 id="project-aims">Project Aims</h2>
+<p>What this project sets out to do is take public bike share data, do some data analysis of them through Python scripts, and then put some visualizations on this site. The project also hopes to automate most of process, from the pulling, to the analysis, to finally, updating the site.</p>
+<p>So far, the project is taking data from <a href="https://s3.amazonaws.com/tripdata/index.html">this s3 bucket</a> provided by Citibike in New York City.</p>
+<p>After New York is done, I&rsquo;ll probably set out to do similar analysis for other cities, like Boston or San Francisco. Each city will get their own page, which you can see on the menu above.</p>
+<p>To take a look at the code for this project, you can access <a href="https://github.com/ohnickmoy">this repo</a></p>
+<h2 id="collaboration">Collaboration</h2>
+<p>If you want to help out on this project, just send a message to <a href="mailto:covidbikedata@gmail.com">covidbikedata@gmail.com</a>!</p>
+
+
+  </main>
+  <footer>Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+</footer>
+
+    
+</body>
+
+</html>
